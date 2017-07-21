@@ -59,11 +59,12 @@ public class notepad extends AppCompatActivity {
 
         String head=heading.getText().toString();
         String text=editText.getText().toString();
-
+        note=new ArrayList<>();
 
         note.add(text);
 
         MainActivity.notes.add(head);
+      //  MainActivity.
         heading.setText("");
         editText.setText("");
 
@@ -76,7 +77,7 @@ public class notepad extends AppCompatActivity {
         {
             e.printStackTrace();
         }*/
-        /*Intent intente=new Intent(this,MainActivity.class);
-        startActivity(intente);*/
+        Intent intente=new Intent(this,MainActivity.class);
+        startActivity(intente);
     }
 }
