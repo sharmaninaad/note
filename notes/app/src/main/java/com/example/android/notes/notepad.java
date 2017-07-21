@@ -12,11 +12,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static android.R.id.edit;
+import static android.os.Build.VERSION_CODES.M;
 import static com.example.android.notes.MainActivity.notes;
 import static com.example.android.notes.R.id.editText;
+import static com.example.android.notes.R.id.note;
 
 public class notepad extends AppCompatActivity {
-    ArrayList<String> note;
+
     EditText heading;
     EditText editText;
     int i;
@@ -24,30 +26,30 @@ public class notepad extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notepad);
+
+        //getting the variables
+
         heading=(EditText)findViewById(R.id.editText2);
         editText=(EditText)findViewById(R.id.editText);
+
+        //getting the values passed by intent
+
         Intent my_intent = getIntent();
         i= my_intent.getIntExtra("place",0);
+
+        //checking if the list is empty
+
         if(i==-1)
         {
             heading.setText("");
             editText.setText("");
 
-            heading.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(i==-1) {
-                        heading.setText("");
-                    }
-
-                }
-            });
 
         }
         else
         {
             heading.setText(notes.get(i));
-            editText.setText(note.get(i));
+            editText.setText(MainActivity.note.get(i));
         }
     }
     public void save(View view)
@@ -59,11 +61,24 @@ public class notepad extends AppCompatActivity {
 
         String head=heading.getText().toString();
         String text=editText.getText().toString();
-        note=new ArrayList<>();
 
-        note.add(text);
+        Intent my_intent = getIntent();
+        i= my_intent.getIntExtra("place",0);
 
-        MainActivity.notes.add(head);
+        if(i==-1)
+        {
+            MainActivity.note.add(text);
+
+            MainActivity.notes.add(head);
+        }
+        else
+        {
+
+            MainActivity.note.remove(i);
+            MainActivity.note.add(text);
+            MainActivity.notes.remove(i);
+            MainActivity.notes.add(head);
+        }
       //  MainActivity.
         heading.setText("");
         editText.setText("");

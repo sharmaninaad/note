@@ -19,14 +19,14 @@ import static android.R.attr.start;
 
 public class MainActivity extends AppCompatActivity {
     static  ArrayList<String> notes=new ArrayList<>();
-
+    static ArrayList<String> note=new ArrayList<>();
       ArrayAdapter arrayAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ListView listView=(ListView)findViewById(R.id.list);
-        arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1,notes);
+        ListView listView = (ListView) findViewById(R.id.list);
+        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, notes);
         listView.setAdapter(arrayAdapter);
 
 
@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }*/
 
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -55,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     public boolean onCreateOptionsMenu(Menu menu)
     {
 
